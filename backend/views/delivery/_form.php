@@ -16,11 +16,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nomor_barcode')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'alamat')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'alamat')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'pengantar')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tanggal_terima')->textInput(['maxlength' => true, 'class' => 'form-control has-feedback-left', 'id'=> 'single_cal1' ]) ?>
+    <?= $form->field($model, 'tanggal_terima')->textInput(['maxlength' => true, 'class' => 'form-control has-feedback-left', 'id' => 'single_cal1']) ?>
 
     <?= $form->field($model, 'pp25')->textInput(['maxlength' => true, 'type' => 'number']) ?>
 

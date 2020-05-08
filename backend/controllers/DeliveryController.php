@@ -27,11 +27,6 @@ class DeliveryController extends Controller
                 'class' => \yii\filters\AccessControl::className(),
                 'only' => ['*'],
                 'rules' => [
-                    // deny all POST requests
-                    [
-                        'allow' => false,
-                        'verbs' => ['POST']
-                    ],
                     // allow authenticated users
                     [
                         'allow' => true,
@@ -153,6 +148,37 @@ class DeliveryController extends Controller
         $fileName   = $nameFile . round(microtime(true) * 1000) . uniqid() . '.xlsx';
         
         $data = Delivery::find()->asArray()->all();
+        $newData = [];
+        $n = 1;
+        foreach ($data as $key => $value) {
+            $tempData = 
+            [
+                'no'              => $n,
+                'no_thn'          => '',
+                'nomor_ppkp'      => '',
+                'tgl_terima'      => $value['tanggal_terima'],
+                'nomor_barcode'   => $value['nomor_barcode'],
+                'nama'            => $value['nama'],
+                'alamat'          => $value['alamat'],
+                'pengantar'       => $value['pengantar'],
+                'bea_masuk'       => '',
+                'cukai'           => '',
+                'ppn1'            => '',
+                'ppn_bm'          => '',
+                'pph'             => '',
+                'pp15'            => '',
+                'bbu'             => '',
+                'blb'             => '',
+                'pph2'            => '',
+                'jumlah_pp25'     => '',
+                'total_pp15_pp25' => '',
+                'tgl_setor'       => ''
+            ];
+
+            array_push($newData, $tempData);
+            $n++;
+        }
+
         $spreadsheet = new Spreadsheet();
         $workSheet = $spreadsheet->getActiveSheet();
         $workSheet->mergeCells('A1:Z1');
@@ -208,7 +234,7 @@ class DeliveryController extends Controller
 
 
         $workSheet->setTitle($sheetTitle);
-        // $workSheet->fromArray($data, NULL, 'A6');
+        $workSheet->fromArray($newData, NULL, 'A9');
         // ->fromArray($data, NULL, 'A8');
 
 

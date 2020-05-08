@@ -32,7 +32,7 @@ class Delivery extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama', 'nomor_barcode', 'pengantar', 'tanggal_terima', 'pp25', 'pp15'], 'required'],
+            [['nama', 'nomor_barcode', 'tanggal_terima', 'pp25', 'pp15'], 'required'],
             [['alamat'], 'string'],
             [['nama', 'nomor_barcode', 'pengantar', 'tanggal_terima', 'pp25', 'pp15'], 'string', 'max' => 255],
         ];
