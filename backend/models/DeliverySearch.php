@@ -46,6 +46,7 @@ class DeliverySearch extends Delivery
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'  => ['defaultOrder' => ['id' => SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -68,7 +69,7 @@ class DeliverySearch extends Delivery
             ->andFilterWhere(['like', 'tanggal_terima', $this->tanggal_terima])
             ->andFilterWhere(['like', 'pp25', $this->pp25])
             ->andFilterWhere(['like', 'pp15', $this->pp15]);
-
+            
         return $dataProvider;
     }
 }

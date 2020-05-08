@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\Delivery;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -35,7 +36,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['get'],
                 ],
             ],
         ];
@@ -60,7 +61,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $user = Yii::$app->user->identity;
+        switch ($user->username) {
+            case 'operator':
+                return $this->redirect('/delivery/index');
+                break;
+            
+            default:
+                break;
+        }
+
+        $dataKiriman = Delivery::find()->count();
+        return $this->render('index', [
+            'totalKiriman' => $dataKiriman
+        ]);
     }
 
     /**
@@ -74,9 +88,19 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        $this->layout = 'main_login';
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            $user = Yii::$app->user->identity->username;
+            switch ($user) {
+                case 'operator':
+                    return $this->redirect('/delivery/index');
+                    break;
+                
+                default:
+                    return $this->goBack();
+                    break;
+            }
         } else {
             $model->password = '';
 
