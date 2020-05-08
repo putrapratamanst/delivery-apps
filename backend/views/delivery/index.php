@@ -26,6 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'rowOptions' => function ($model, $key, $index, $column) {
+            if ($index % 2 == 0) {
+                return ['class' => 'info'];
+            }
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -47,7 +52,34 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
         'tanggal_setor',
+        [
+            'attribute' => 'pp25',
+            'format'=>'html',
+            'contentOptions' => function ($model, $key, $index, $column) {
+                if ($model->tanggal_setor) {
+                    return ['style' => 'color:white;background-color:#1ABB9C'];
+                }
+                if ($model->pengantar == "") {
+                    return ['style' => 'color:white;background-color:#dc3545'];
+                }
+                if ($model->pengantar) {
+                    return ['style' => 'color:white;background-color:#ffc107'];
+                }
 
+            },
+            // 'name' => 'status',
+            'value' => function($model){
+                if($model->tanggal_setor){
+                    return "SELESAI";
+                }
+                if($model->pengantar == ""){
+                    return "BELUM DIKIRIM";
+                }
+                if($model->pengantar){
+                    return "SEDANG DIKIRIM";
+                }
+            }
+        ],
         // 'pp25',
         // 'pp15',
 

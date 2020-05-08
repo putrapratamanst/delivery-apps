@@ -34,7 +34,21 @@ class m200508_174136_insert_delivery_table extends Migration
                 'alamat' => 'JL KUDUS JEPARA KM 4 RSB HARAPAN BUNDA',
                 'pengantar' => "RIFAI",
                 'tanggal_terima' => '02/01/2020',
-                'tanggal_setor' => '02/03/2020',
+                'tanggal_setor' => '',
+                'pp25' => 10000,
+                'pp15' => 10000,
+                'blb' => 10000,
+            ]
+        );
+        $this->insert(
+            'delivery',
+            [
+                'nama' => 'BUDI GUNAWAN.',
+                'nomor_barcode' => 'EA392688533CN',
+                'alamat' => 'JL MEDAN MERDEKA 5 JEPANG',
+                'pengantar' => "",
+                'tanggal_terima' => '02/04/2019',
+                'tanggal_setor' => '',
                 'pp25' => 10000,
                 'pp15' => 10000,
                 'blb' => 10000,

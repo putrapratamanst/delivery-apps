@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Delivery */
 
-$this->title = "Nama: ".$model->nama;
+$this->title = "Nama: " . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Deliveries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -43,3 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+<?php
+$modelArray = $model->getAttributes();
+if ($modelArray['pengantar'] != "" && $modelArray['tanggal_setor'] == "") { ?>
+
+    <center><?= Html::a('Selesaikan Pengiriman', ['finish', 'id' => $model->id], ['class' => 'btn btn-primary']) ?></center>
+
+<?php } ?>

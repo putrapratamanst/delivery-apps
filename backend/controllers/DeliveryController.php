@@ -114,6 +114,19 @@ class DeliveryController extends Controller
         ]);
     }
 
+    public function actionFinish($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('finish', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Deletes an existing Delivery model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
