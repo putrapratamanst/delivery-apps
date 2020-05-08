@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<style>
+    html,
+    body {
+        /* font-family: 'Montserrat', sans-serif, Helvetica, Arial; */
+        color: #000000;
+        font-style: normal;
+        font-size: 7pt;
+        margin-top: 0px;
+    }
+
+    .wrapper {
+        width: 742px;
+        margin: 0 20px 0 30px;
+        float: left;
+    }
+
+    .c--red {
+        color: #af0707;
+    }
+
+    h2 {
+        font-size: 14pt;
+    }
+
+    .f--12 {
+        font-size: 12pt;
+    }
+
+    .f--11 {
+        font-size: 11pt;
+    }
+
+    .f--10 {
+        font-size: 10pt;
+    }
+
+    .f--9 {
+        font-size: 9pt;
+    }
+
+    .f--8 {
+        font-size: 8pt;
+    }
+
+    .f--7 {
+        font-size: 7pt;
+    }
+
+    .f--6 {
+        font-size: 6pt;
+    }
+
+    .f--5 {
+        font-size: 5pt;
+    }
+
+    .f--bold {
+        font-weight: bold;
+    }
+
+    .f--italic {
+        font-style: italic;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    .middle {
+        vertical-align: middle;
+    }
+
+    .m-b--20 {
+        margin-bottom: 20px;
+    }
+
+    .m-b--0 {
+        margin-bottom: 0px;
+    }
+
+    .m-t--0 {
+        margin-top: 0px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        vertical-align: top;
+    }
+
+    tr {
+        margin: 0 0px 0 0px;
+        /* padding: 0 0px 0 0px; */
+    }
+
+    hr {
+        margin: 0 0px 0 0px;
+        /* padding: 0 0px 0 0px; */
+    }
+
+    .w--8 {
+        width: 8px;
+    }
+
+    .w--10 {
+        width: 10px;
+    }
+
+    .w--12 {
+        width: 12px;
+    }
+
+    .w--20 {
+        width: 20px;
+    }
+
+    .w--80 {
+        width: 80px;
+    }
+
+    .w--145 {
+        width: 145px;
+    }
+
+    .w--400 {
+        width: 400px;
+    }
+
+    .w--600 {
+        width: 600px;
+    }
+
+    .w--2p {
+        width: 2%;
+    }
+
+    .w--3p {
+        width: 3%;
+    }
+
+    .w--5p {
+        width: 5%;
+    }
+
+    .w--7p {
+        width: 7%;
+    }
+
+    .w--10p {
+        width: 10%;
+    }
+
+    .w--15p {
+        width: 15%;
+    }
+
+    .w--20p {
+        width: 20%;
+    }
+
+    .w--25p {
+        width: 25%;
+    }
+
+    .w--29p {
+        width: 29%;
+    }
+
+    .w--30p {
+        width: 30%;
+    }
+
+    .w--35p {
+        width: 35%;
+    }
+
+    .w--40p {
+        width: 40%;
+    }
+
+    .w--45p {
+        width: 45%;
+    }
+
+    .w--50p {
+        width: 50%;
+    }
+
+    .w--55p {
+        width: 55%;
+    }
+
+    .w--60p {
+        width: 60%;
+    }
+
+    .w--65p {
+        width: 65%;
+    }
+
+    .w--70p {
+        width: 70%;
+    }
+
+    .w--78p {
+        width: 78%;
+    }
+
+    .w--80p {
+        width: 80%;
+    }
+
+    .w--90p {
+        width: 90%;
+    }
+
+    .w--93p {
+        width: 93%;
+    }
+
+    .h--50p {
+        height: 50px;
+    }
+
+    .h--35p {
+        height: 30px;
+    }
+
+    .p-l--5 {
+        padding-left: 5px;
+    }
+
+    .p-l--10 {
+        padding-left: 10px;
+    }
+
+    .p-t--20 {
+        padding-top: 20px;
+    }
+
+    .p-t--50 {
+        padding-top: 50px;
+    }
+
+    .timeline {
+        margin-top: 2px;
+        width: 12px;
+    }
+
+    .transit {
+        border: 1px dotted #808284;
+        height: 25px;
+        width: 100%;
+        vertical-align: middle;
+    }
+
+    .dotted {
+        border: none;
+        border-top: 1px dotted #af0707;
+        color: #fff;
+        background-color: #fff;
+        height: 1px;
+    }
+
+    .bodered {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    
+    <div class="wrapper">
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td class="f--10 w--20p">
+                    <b>KANTOR POS KUDUS 59300 <br>
+                    J1. Jend. Sudirman No. 43 <br>
+                    Kudus<br>
+                    Telp.0291-438013<br></b>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="f--10 w--78p right">
+                    Kudus, <span id="tanggal_sekarang_dash">02-02-2020</span>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td class="f--11 center">
+                    <b>SURAT PEMBERITAHUAN</b>
+                </td>
+            </tr>
+        </table>
+        <div class="f--10">
+            Kepada: <br>
+                <span id="nama">SRI WAHYUNINGSIH</span>, <span id="alamat">DESA MLATILOR RT 2 RW 4 GANG BUDHAN KUDUS</span>, Telp. <span id="no_hp">081215756626</span> 
+                <br>
+                <br>
+            Dengan hormat, 
+            <br>
+            <br>
+            Diberitahukan bahwa kami telah menerima kiriman dari <b>SHANKUN </b> asal <b>CHINA</b>
+            dengan nomor kiriman <b>LO71937491329CB</b> yang dialamat kepada Saudara.
+            <br>
+            <br>
+            Berdasarkan SPPBMCP Tanggal <b>12-02-2020</b> nomor <b>005298</b> dengan nomor e-billing <b>620200200099107</b>,kiriman tersebut dikenakan
+            pungutan negara dan jasa layanan pos. Terlampir invoice <b>nomor 000000223/2020/59300</b> untuk dilunasi pada loket kantorpos
+            terdekat.
+            <br>
+            <br>
+            Kiriman tersebut dapat diambil di loket serah Kantor Pos <b> KUDUS 59300 , J1. Jend. Sudirman No. 43 </b>, no tlp <b>0291-438013</b>, pada
+            jam kerja dengan membawa Kartu Identitas (KTP, SIM,Pasport) yang masih berlaku danbukti setor pelunasan
+            <br>
+            <br>
+            Bila pengambilan kiriman diwakilkan, maka harus menyertakan surat kuasa bermeterai, dilampiri foto copy identitas Saudara
+            dan yang menerima kuasa serta bukti setor pelunasan.
+            <br>
+            <br>
+            Apabila Saudara belum mengambil barang (berikut pelunasan pungutannya) melebihi <b> 14 (empat betas) </b> haridihitung sejak ,
+            maka akan dikenakan bea simpan sebesar Rp. 2.000 (dua ribu) per hari.
+            <br>
+            <br>
+            Bila hingga tanggal <b>12-04-2020</b> kiriman tersebut tidak diambil (dilunasi pungutannya), akan dikembalikan kepengirim atau
+            menjadi barang tidak dikuasai.
+            <br>
+            <br>
+            Demikian disampaikan, atas kepercayaan Saudara terhadap layanan PT. POS INDONESIA kami mengucapkan terimakasih.
+            <br>
+        </div>
+
+            <div>
+                <table style="padding-top: 10px">
+                    <tr>
+                        <td class="f--10">
+                            AN. Kepala Kantor Pos KUDUS
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="f--10">
+                            Manajer Antaran/Proses
+                        </td>
+                    </tr>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <tr>
+                        <td class="f--10">
+                            (......................................)
+                            <br>
+                            Nippos. ..........................
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+
+        <table>
+            <tr>
+                <td class="f--7 w--20p">
+                    Catatan
+                </td>
+                <td class="f--7">
+                    :
+                </td>
+                <td class="f--7 w--78p">
+                    <span id="catatan">uang muka tersebut paling lambat dipertanggungjawabkan 7 hari kerja terhitung
+                        dari
+                        tanggal pencairan</span>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="f--12 center">
+
+                    <b>DIVISI KEUANGAN</b>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td class="f--7 w--3p bodered"></td>
+                <td class="f--7" colspan="2">
+                    Tunai Via Kas
+                </td>
+                <td class="f--7" colspan="2">
+                    <span id="manager">MANAGER PERBENDAHARAAN</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f--7 w--3p bodered"></td>
+                <td class="f--7" colspan="2">
+                    Tunai Dengan Cek
+                </td>
+                <td class="f--7" colspan="2">
+                    <span id="tgl-manager">7/18/2019 1:35:42 PM</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f--7 w--3p bodered"></td>
+                <td class="f--7" colspan="4">
+                    Transfer / Giro
+                </td>
+            </tr>
+            <tr>
+                <td class="f--7" colspan="3"></td>
+                <td class="f--7" colspan="2">
+                    <span id="nama-manager"><u>SURYADI</u></span>
+                </td>
+            </tr>
+
+        </table>
+
+        <!-- <div style="margin: 0 auto; width: 100%;" id="direktur-table">
+       
+    </div> -->
+
+        <div style="margin: 0 auto; width: 100%;"" id=" direktur-table">
+            <table>
+                <tr>
+                    <td class="f--7" colspan="5">
+                        <b>PERSETUJUAN DIREKSI</b>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table>
+            <tr>
+                <td class="f--9 p-t--50 center">
+                    {PAGENO}
+                    <b>[&quot;Dokumen ini menggunakan tanda tangan elektronik melalui akun pengguna dan direkam secara
+                        sistem&quot;]</b>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

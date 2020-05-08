@@ -21,6 +21,7 @@ class Delivery extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $upload_file;
     public static function tableName()
     {
         return 'delivery';

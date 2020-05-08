@@ -5,12 +5,16 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Delivery;
 use backend\models\DeliverySearch;
+use DOMDocument;
+use Mpdf\Mpdf;
+use Mpdf\Output\Destination;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx as XlsxWriter;
 use yii\helpers\VarDumper;
+use yii\web\UploadedFile;
 
 /**
  * DeliveryController implements the CRUD actions for Delivery model.
@@ -245,6 +249,68 @@ class DeliveryController extends Controller
         unset($spreadsheet);
         gc_collect_cycles();
         Yii::$app->response->sendFile($filePath);
+    }
+
+    public function actionPdf($id)
+    {
+        
+        $model = new Delivery();
+        $data = Delivery::find()->where(['id' => $id])->asArray()->one();
+        $fileName = "Surat_Pemberitahuan" . round(microtime(true) * 1000) . uniqid() . 'report.pdf';
+        $template = file_get_contents(Yii::getAlias('@app/web/template/sp.html'));
+        $mpdf = new Mpdf([
+            'mode'          => 'utf-8',
+            'format'        => [200, 256],
+            'margin_left'   => 8,
+            'margin_top'    => 5,
+            'margin_right'  => 8,
+            'margin_bottom' => 0,
+            'margin_header' => 3,
+            'margin_footer' => 3,
+            'tempDir'       => Yii::getAlias('@app/web/template')
+        ]);
+
+        // $mpdf->SetDisplayMode('fullpage');
+        $mpdf->list_indent_first_level = 0;
+
+        $document = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $document->loadHTML($template);
+        libxml_clear_errors();
+
+        $modifiedDocument = self::putDataToTemplate($document, $data);
+        $mpdf->SetHTMLHeader('
+        <table>
+            <tr>
+                <td id="tanggal_sekarang_slash" class="f--7">
+                    02/02/2020
+                </td>
+                <td class="f--7 center">
+                    <span id="tanggal">Aplikasi Kiriman Internasional</span>
+                </td>
+            </tr>
+        </table>
+        ');
+        $mpdf->setHTMLFooter('
+                <table>
+            <tr>
+                <td id="tanggal_sekarang_slash" class="f--7">
+                    aki.posindonesia.cojc1:801/live/index.php?view=CreateX13&nokiriman=1_0583303368CN                </td>
+                <td class="f--7 right">
+                    <span id="tanggal">{PAGENO}/{nbpg}</span>
+                </td>
+            </tr>
+        </table>
+
+        ');
+        $mpdf->writeHTML($modifiedDocument);
+        $mpdf->Output($fileName, 'D');
+    }
+
+
+    public function putDataToTemplate(DOMDocument $document, $data)
+    {
+        return $document->saveHTML();
 
     }
 }

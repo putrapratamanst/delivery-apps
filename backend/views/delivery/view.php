@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?= Html::a('<i class="fa fa-print"></i> Invoice', ['pdf', 'id' => $model->id], ['class' => 'btn btn-success pull-right']) ?>
         <?= Html::a('Back', ['index'], ['class' => 'btn btn-warning']) ?>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
