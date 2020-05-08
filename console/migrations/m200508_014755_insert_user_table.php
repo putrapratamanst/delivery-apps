@@ -22,7 +22,8 @@ class m200508_014755_insert_user_table extends Migration
             'status' => 10,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
-        ],
+        ]);
+        $this->insert('user',
         [
             'username' => 'manager',
             'auth_key' => '0r1jiVTr5hQ67S00zl0rKrPL39iYFzM5',
@@ -32,7 +33,8 @@ class m200508_014755_insert_user_table extends Migration
             'status' => 10,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
-        ],
+        ]);
+        $this->insert('user',
         [
             'username' => 'customer_service',
             'auth_key' => '0r1jiVTr5hQ67S00zl0rKrPL39iYFzM5',
@@ -42,7 +44,8 @@ class m200508_014755_insert_user_table extends Migration
             'status' => 10,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
-        ],
+        ]);
+        $this->insert('user',
         [
             'username' => 'kepala_kantor',
             'auth_key' => '0r1jiVTr5hQ67S00zl0rKrPL39iYFzM5',
@@ -52,8 +55,8 @@ class m200508_014755_insert_user_table extends Migration
             'status' => 10,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
-        ]
-    );
+        ]);
+
     }
 
     /**

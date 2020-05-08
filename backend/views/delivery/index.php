@@ -41,8 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'currency',
                 'Rp.',
                 [
-                    \NumberFormatter::MIN_FRACTION_DIGITS => 0,
-                    \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                    // \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                    // \NumberFormatter::MAX_FRACTION_DIGITS => 0,
                 ]
             ],
         ],
