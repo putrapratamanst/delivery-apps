@@ -46,15 +46,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
         ],
+        'tanggal_setor',
+
         // 'pp25',
         // 'pp15',
 
         [
             'class' => 'yii\grid\ActionColumn',
-            'headerOptions' => ['style' => 'width:5%'],
+            'headerOptions' => ['style' => 'width:6%'],
 
-            'template' => '{view} {update} {delete}',
+            'template' => '{print} {view} {update} {delete}',
             'buttons' => [
+                'print' => function ($url, $model) {
+                    $url = Url::to(['delivery/pdf', 'id' => $model->id]);
+                    return Html::a('<span class="fa fa-print"></span>', $url, ['title' => 'print']);
+                },
                 'view' => function ($url, $model) {
                     $url = Url::to(['delivery/view', 'id' => $model->id]);
                     return Html::a('<span class="fa fa-eye"></span>', $url, ['title' => 'view']);

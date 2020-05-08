@@ -35,7 +35,7 @@ class Delivery extends \yii\db\ActiveRecord
         return [
             [['nama', 'nomor_barcode', 'tanggal_terima', 'pp25', 'pp15'], 'required'],
             [['alamat'], 'string'],
-            [['nama', 'nomor_barcode', 'pengantar', 'tanggal_terima', 'pp25', 'pp15'], 'string', 'max' => 255],
+            [['nama', 'tanggal_setor', 'nomor_barcode', 'pengantar', 'tanggal_terima', 'pp25', 'pp15'], 'string', 'max' => 255],
         ];
     }
 

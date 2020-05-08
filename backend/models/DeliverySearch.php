@@ -18,7 +18,7 @@ class DeliverySearch extends Delivery
     {
         return [
             [['id'], 'integer'],
-            [['nama', 'nomor_barcode', 'alamat', 'pengantar', 'tanggal_terima', 'pp25', 'pp15'], 'safe'],
+            [['nama', 'nomor_barcode', 'alamat', 'pengantar', 'tanggal_terima', 'pp25', 'pp15', 'tanggal_setor'], 'safe'],
         ];
     }
 
@@ -67,6 +67,7 @@ class DeliverySearch extends Delivery
             ->andFilterWhere(['like', 'alamat', $this->alamat])
             ->andFilterWhere(['like', 'pengantar', $this->pengantar])
             ->andFilterWhere(['like', 'tanggal_terima', $this->tanggal_terima])
+            ->andFilterWhere(['like', 'tanggal_setor', $this->tanggal_setor])
             ->andFilterWhere(['like', 'pp25', $this->pp25])
             ->andFilterWhere(['like', 'pp15', $this->pp15]);
             
