@@ -62,8 +62,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $user = Yii::$app->user->identity;
-        switch ($user->username) {
-            case 'operator':
+        switch ($user->role) {
+            case 1:
                 return $this->redirect('/delivery/index');
                 break;
             

@@ -20,6 +20,7 @@ class m200508_014755_insert_user_table extends Migration
             'password_reset_token' => NULL,
             'email' => 'operator@operator.com',
             'status' => 10,
+            'role' => 1,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
         ]);
@@ -31,6 +32,7 @@ class m200508_014755_insert_user_table extends Migration
             'password_reset_token' => NULL,
             'email' => 'manager@manager.com',
             'status' => 10,
+            'role' => 2,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
         ]);
@@ -42,6 +44,7 @@ class m200508_014755_insert_user_table extends Migration
             'password_reset_token' => NULL,
             'email' => 'cs@cs.com',
             'status' => 10,
+            'role' => 3,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
         ]);
@@ -53,6 +56,7 @@ class m200508_014755_insert_user_table extends Migration
             'password_reset_token' => NULL,
             'email' => 'kepala@kantor.com',
             'status' => 10,
+            'role' => 4,
             'created_at' => 1588787597,
             'updated_at' => 1588787597,
         ]);

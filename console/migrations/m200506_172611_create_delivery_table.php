@@ -20,9 +20,10 @@ class m200506_172611_create_delivery_table extends Migration
             'pengantar' => $this->string(255),
             'tanggal_terima' => $this->string(255),
             'tanggal_setor' => $this->string(255),
+            'jasa_pengiriman' => $this->string(255),
+            'is_retur' => $this->integer(10),
             'pp25' => $this->string(255),
             'pp15' => $this->string(255),
-            'blb' => $this->string(255),
         ]);
     }
 

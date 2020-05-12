@@ -13,13 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="delivery-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?><?php if ($model->is_retur) {
+                                                echo " (RETUR)";
+                                            } ?>
+    </h1>
 
     <p>
         <?= Html::a('<i class="fa fa-print"></i> Invoice', ['pdf', 'id' => $model->id], ['class' => 'btn btn-success pull-right']) ?>
-        <?= Html::a('Back', ['index'], ['class' => 'btn btn-warning']) ?>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('<i class="fa fa-arrow-left"></i> Back', ['index'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('<i class="fa fa-pencil"></i> Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="fa fa-trash"></i> Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -37,16 +40,60 @@ $this->params['breadcrumbs'][] = $this->title;
             'alamat:ntext',
             'pengantar',
             'tanggal_terima',
-            'pp25',
-            'pp15',
+            [
+                'attribute' => 'pp25',
+                'label' => 'JUMLAH BLB (PP25)',
+                'format' => [
+                    'currency',
+                    'Rp.',
+                    [
+                        // \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                        // \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                    ]
+                ],
+            ],
+            [
+                'attribute' => 'pp15',
+                'label' => 'JUMLAH PAJAK (PP15)',
+                'format' => [
+                    'currency',
+                    'Rp.',
+                    [
+                        // \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                        // \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                    ]
+                ],
+            ],
+            [
+                'attribute' => 'pp15',
+                'label' => 'TOTAL (PP22)',
+                'value' => function($model){
+                    return $model->pp15 + $model->pp25;
+                },
+                'format' => [
+                    'currency',
+                    'Rp.',
+                    [
+                        // \NumberFormatter::MIN_FRACTION_DIGITS => 0,
+                        // \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                    ]
+                ]
+            ],
         ],
     ]) ?>
 
 </div>
 <?php
 $modelArray = $model->getAttributes();
-if ($modelArray['pengantar'] != "" && $modelArray['tanggal_setor'] == "") { ?>
+if ($modelArray['pengantar'] != "" && $modelArray['tanggal_setor'] == "" && ($modelArray['is_retur'] == NULL)) { ?>
 
-    <center><?= Html::a('Selesaikan Pengiriman', ['finish', 'id' => $model->id], ['class' => 'btn btn-primary']) ?></center>
+    <center><?= Html::a('<i class="fa fa-check"></i> Selesaikan Pengiriman', ['finish', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+    
+    <?php if($modelArray['is_retur'] == NULL){ ?>
+        <?= Html::a('<i class="fa fa-refresh"></i> Retur Kiriman', ['retur-kiriman', 'id' => $model->id], ['class' => 'btn btn-warning']) ?></center>
+    <?php }?>
 
+<?php }
+if ($modelArray['pengantar'] == "") { ?>
+    <center><?= Html::a('<i class="fa fa-arrow-up"></i> Input Pengantar', ['input-pengantar', 'id' => $model->id], ['class' => 'btn btn-info']) ?></center>
 <?php } ?>

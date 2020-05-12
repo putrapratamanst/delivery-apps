@@ -56,11 +56,53 @@ class DeliveryController extends Controller
         $searchModel = new DeliverySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        return $this->render('index2');
+    }
+
+    public function actionTerbuka()
+    {
+        $searchModel = new DeliverySearch();
+        $dataProvider = $searchModel->searchTerbuka(Yii::$app->request->queryParams);
+
+        return $this->render('index',[
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionDikirim()
+    {
+        $searchModel = new DeliverySearch();
+        $dataProvider = $searchModel->searchDikirim(Yii::$app->request->queryParams);
+
+        return $this->render('index',[
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionLunas()
+    {
+        $searchModel = new DeliverySearch();
+        $dataProvider = $searchModel->searchLunas(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    public function actionRetur()
+    {
+        $searchModel = new DeliverySearch();
+        $dataProvider = $searchModel->searchRetur(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
 
     /**
      * Displays a single Delivery model.
@@ -85,7 +127,34 @@ class DeliveryController extends Controller
         $model = new Delivery();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-             $model->save();
+            $barcode = substr($model->nomor_barcode, 0,2);
+
+            switch ($barcode) {
+                case 'CC':
+                    $jenisPengiriman = "Pos Ekspor";
+                    break;
+                case 'CP':
+                    $jenisPengiriman = "Paketpos Cepat Internasional";
+                    break;
+                case 'RR':
+                    $jenisPengiriman = "Registered Internasional";
+                    break;
+                case 'LX':
+                    $jenisPengiriman = "ePacket";
+                    break;
+                
+                default:
+                    $jenisPengiriman = "EMS";
+                    break;
+            }
+
+            $model->jasa_pengiriman = $jenisPengiriman;
+            if($model->pengantar == ""){
+                $model->pengantar = NULL;
+            }
+            $model->save();
+            Yii::$app->session->setFlash('error', "User not saved.");
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -114,6 +183,18 @@ class DeliveryController extends Controller
         ]);
     }
 
+    public function actionReturKiriman($id)
+    {
+        $model = $this->findModel($id);
+        $model->is_retur = true;
+        if ($model->save()) {
+            Yii::$app->session->setFlash('info', "Barang berhasil di Retur.");
+
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+    }
+
     public function actionFinish($id)
     {
         $model = $this->findModel($id);
@@ -123,6 +204,19 @@ class DeliveryController extends Controller
         }
 
         return $this->render('finish', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionInputPengantar($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('input-pengantar', [
             'model' => $model,
         ]);
     }
