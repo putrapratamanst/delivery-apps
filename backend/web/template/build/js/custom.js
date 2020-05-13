@@ -2176,19 +2176,32 @@ function init_charts() {
     if ($('#mybarChart').length) {
 
         var ctx = document.getElementById("mybarChart");
+        
+        var xhr = new XMLHttpRequest();
+        var url = "/site/chart";
+        var json = null;
+
+        var d = xhr.onreadystatechange = function () {
+            if (this.status == 200) {
+                return this.response;
+            }
+        };
+        xhr.open("GET", url, true);
+        xhr.send();
+        
+        console.log(JSON.parse(d.response));
+
+
         var mybarChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: ["Kiriman Terbuka", "Sedang Dikirim", "Kiriman Selesai", "Retur"],
                 datasets: [{
                     label: '# of Votes',
                     backgroundColor: "#26B99A",
                     data: [51, 30, 40, 28, 92, 50, 45]
-                }, {
-                    label: '# of Votes',
-                    backgroundColor: "#03586A",
-                    data: [41, 56, 25, 48, 72, 34, 12]
-                }]
+                }, 
+            ]
             },
 
             options: {

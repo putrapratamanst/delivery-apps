@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\controllers;
 
 use backend\models\Delivery;
@@ -7,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use yii\helpers\Json;
 
 /**
  * Site controller
@@ -27,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index' ,'chart'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -37,6 +39,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['get'],
+                    'chart' => ['get'],
                 ],
             ],
         ];
@@ -66,17 +69,42 @@ class SiteController extends Controller
             case 1:
                 return $this->redirect('/delivery/index');
                 break;
-            
+
             default:
                 break;
         }
 
         $dataKiriman = Delivery::find()->count();
+        $dataTerbuka = Delivery::find()->where(['pengantar' => NULL])->andWhere(['tanggal_setor' => NULL])->andWhere(['is_retur' => NULL])->count();
+        $dataSedangDikirim = Delivery::find()->where(['not', ['pengantar' => NULL]])->andWhere(['tanggal_setor' => NULL])->count();
+        $dataSelesai = Delivery::find()->where(['not', ['pengantar' => NULL]])->andWhere(['not', ['tanggal_setor' => NULL]])->count();
+        $dataRetur = Delivery::find()->where(['not', ['is_retur' => NULL]])->count();
         return $this->render('index', [
-            'totalKiriman' => $dataKiriman
+            'totalKiriman' => $dataKiriman,
+            'totalTerbuka' => $dataTerbuka,
+            'totalSedangDikirim' => $dataSedangDikirim,
+            'totalSelesai' => $dataSelesai,
+            'totalRetur' => $dataRetur,
         ]);
     }
 
+    public function actionChart()
+    {
+        $dataKiriman = Delivery::find()->count();
+        $dataTerbuka = Delivery::find()->where(['pengantar' => NULL])->andWhere(['tanggal_setor' => NULL])->andWhere(['is_retur' => NULL])->count();
+        $dataSedangDikirim = Delivery::find()->where(['not', ['pengantar' => NULL]])->andWhere(['tanggal_setor' => NULL])->count();
+        $dataSelesai = Delivery::find()->where(['not', ['pengantar' => NULL]])->andWhere(['not', ['tanggal_setor' => NULL]])->count();
+        
+        $dataRetur = Delivery::find()->where(['not', ['is_retur' => NULL]])->count();
+        $result = [
+            'totalKiriman' => $dataKiriman,
+            'totalTerbuka' => $dataTerbuka,
+            'totalSedangDikirim' => $dataSedangDikirim,
+            'totalSelesai' => $dataSelesai,
+            'totalRetur' => $dataRetur,
+        ];
+        return Json::encode($result);
+    }
     /**
      * Login action.
      *
@@ -96,7 +124,7 @@ class SiteController extends Controller
                 case 'operator':
                     return $this->redirect('/delivery/index');
                     break;
-                
+
                 default:
                     return $this->goBack();
                     break;

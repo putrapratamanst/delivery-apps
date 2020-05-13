@@ -73,7 +73,7 @@ $user = Yii::$app->user->identity;
     <script src="<?= Yii::getAlias('@web/template') ?>/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="<?= Yii::getAlias('@web/template') ?>/build/js/custom.min.js"></script>
+    <script src="<?= Yii::getAlias('@web/template') ?>/build/js/custom.js"></script>
 
 </body>
 
