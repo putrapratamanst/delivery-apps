@@ -2183,6 +2183,29 @@ function init_charts() {
 
         var d = xhr.onreadystatechange = function () {
             if (this.status == 200) {
+                var mybarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Kiriman Terbuka", "Sedang Dikirim", "Kiriman Selesai", "Retur"],
+                        datasets: [{
+                            label: '# of Votes',
+                            backgroundColor: "#26B99A",
+                            data: [51, 30, 40, 28, 92, 50, 45]
+                        },
+                        ]
+                    },
+
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
                 return this.response;
             }
         };
@@ -2192,28 +2215,6 @@ function init_charts() {
         console.log(JSON.parse(d.response));
 
 
-        var mybarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Kiriman Terbuka", "Sedang Dikirim", "Kiriman Selesai", "Retur"],
-                datasets: [{
-                    label: '# of Votes',
-                    backgroundColor: "#26B99A",
-                    data: [51, 30, 40, 28, 92, 50, 45]
-                }, 
-            ]
-            },
-
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
 
     }
 
