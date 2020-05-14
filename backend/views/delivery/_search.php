@@ -11,22 +11,22 @@ use yii\widgets\ActiveForm;
 <div class="delivery-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['pencarian'],
         'method' => 'get',
         'options' => [
             'data-pjax' => 1
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php //echo $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'nama') ?>
+    <?php //echo $form->field($model, 'nama') ?>
 
     <?= $form->field($model, 'nomor_barcode') ?>
 
-    <?= $form->field($model, 'alamat') ?>
+    <?php //echo $form->field($model, 'alamat') ?>
 
-    <?= $form->field($model, 'pengantar') ?>
+    <?php //echo $form->field($model, 'pengantar') ?>
 
     <?php // echo $form->field($model, 'tanggal_terima') ?>
 
@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Reset', ['/delivery/index'], ['class' => 'btn btn-danger']) ?>
+        <?= Html::a('Reset', ['/delivery/pencarian'], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

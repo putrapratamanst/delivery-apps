@@ -208,6 +208,16 @@ class DeliveryController extends Controller
         ]);
     }
 
+    public function actionPencarian()
+    {
+        $searchModel = new DeliverySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('pencarian', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionInputPengantar($id)
     {
         $model = $this->findModel($id);

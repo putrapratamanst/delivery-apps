@@ -10,6 +10,10 @@ $this->title = "Nama: " . $model->nama;
 $this->params['breadcrumbs'][] = ['label' => 'Deliveries', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+$user = Yii::$app->user->identity;
+$index = 'index';
+if($user->role == 3)
+    $index = 'pencarian';
 ?>
 <div class="delivery-view">
 
@@ -20,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('<i class="fa fa-print"></i> Invoice', ['pdf', 'id' => $model->id], ['class' => 'btn btn-success pull-right']) ?>
-        <?= Html::a('<i class="fa fa-arrow-left"></i> Back', ['index'], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('<i class="fa fa-arrow-left"></i> Back', [$index], ['class' => 'btn btn-warning']) ?>
         <?= Html::a('<i class="fa fa-pencil"></i> Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="fa fa-trash"></i> Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -40,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'alamat:ntext',
             'pengantar',
             'tanggal_terima',
+            'tanggal_setor',
             [
                 'attribute' => 'pp25',
                 'label' => 'JUMLAH BLB (PP25)',

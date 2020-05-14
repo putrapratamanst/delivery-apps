@@ -69,6 +69,9 @@ class SiteController extends Controller
             case 1:
                 return $this->redirect('/delivery/index');
                 break;
+            case 3:
+                return $this->redirect('/delivery/pencarian');
+                break;
 
             default:
                 break;

@@ -41,6 +41,9 @@ class DeliverySearch extends Delivery
     public function search($params)
     {
         $query = Delivery::find();
+        if(empty($params) || empty($params['DeliverySearch']['nomor_barcode'])){
+            $query = Delivery::find()->where(['id' => NULL]);
+        }
 
         // add conditions that should always apply here
 
