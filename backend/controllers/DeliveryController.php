@@ -287,13 +287,13 @@ class DeliveryController extends Controller
                 'ppn1'            => '',
                 'ppn_bm'          => '',
                 'pph'             => '',
-                'pp15'            => '',
+                'pp15'            => $value['pp15'],
                 'bbu'             => '',
                 'blb'             => '',
                 'pph2'            => '',
-                'jumlah_pp25'     => '',
-                'total_pp15_pp25' => '',
-                'tgl_setor'       => ''
+                'jumlah_pp25'     => $value['pp25'],
+                'total_pp15_pp25' => $value['pp15'] + $value['pp25'],
+                'tgl_setor'       => $value['tanggal_setor'],
             ];
 
             array_push($newData, $tempData);
