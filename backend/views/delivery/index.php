@@ -26,6 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => ''],
+
         'rowOptions' => function ($model, $key, $index, $column) {
             if ($index % 2 == 0) {
                 return ['class' => 'info'];
@@ -62,7 +64,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
         ],
+
         // 'tanggal_setor',
+        [
+            'attribute' => 'bukti_pembayaran',
+            'value' => function ($model) {
+                if ($model->bukti_pembayaran)
+                    return $model->bukti_pembayaran;
+            },
+            // 'visible' => $dataProvider->bukti_pembayaran ? true : false,
+        ],
+
         [
             'attribute' => 'pp25',
             'header' => 'Status',
@@ -114,7 +126,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'update' => function ($url, $model) {
                     $url = Url::to(['delivery/view', 'id' => $model->id]);
-                    return Html::a("UPDATE", $url, ['title' => 'update', 'class' => 'btn btn-warning']);
+                    if(!$model->is_retur){
+                        return Html::a("UPDATE", $url, ['title' => 'update', 'class' => 'btn btn-warning']);
+                    }
                 },
                 // 'print' => function ($url, $model) {
                 //     $url = Url::to(['delivery/pdf', 'id' => $model->id]);

@@ -37,6 +37,7 @@ if($user->role == 3)
 
     <?= DetailView::widget([
         'model' => $model,
+        'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => ''],
         'attributes' => [
             'id',
             'nama',
@@ -84,6 +85,17 @@ if($user->role == 3)
                     ]
                 ]
             ],
+            [
+                'attribute' => 'bukti_pembayaran',
+                'value' => function($model){
+                    if($model->bukti_pembayaran)
+                    return $model->bukti_pembayaran;
+                },
+                'rowOptions' => [
+                    'class' => 'hidden',
+                ],
+            ],
+            'alasan_retur',
         ],
     ]) ?>
 

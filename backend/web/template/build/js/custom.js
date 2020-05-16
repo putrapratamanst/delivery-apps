@@ -2183,14 +2183,23 @@ function init_charts() {
 
         var d = xhr.onreadystatechange = function () {
             if (this.status == 200) {
+                var responseChart = JSON.parse(this.response);
+
+                console.log(responseChart.totalKiriman);
+
                 var mybarChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: ["Kiriman Terbuka", "Sedang Dikirim", "Kiriman Selesai", "Retur"],
                         datasets: [{
-                            label: '# of Votes',
+                            label: 'Total:',
                             backgroundColor: "#26B99A",
-                            data: [51, 30, 40, 28, 92, 50, 45]
+                            data: [
+                                responseChart.totalTerbuka, 
+                                responseChart.totalSedangDikirim, 
+                                responseChart.totalSelesai, 
+                                responseChart.totalRetur, 
+                            ]
                         },
                         ]
                     },
@@ -2211,11 +2220,6 @@ function init_charts() {
         };
         xhr.open("GET", url, true);
         xhr.send();
-        
-        console.log(JSON.parse(d.response));
-
-
-
     }
 
 

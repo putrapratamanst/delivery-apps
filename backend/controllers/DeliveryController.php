@@ -183,21 +183,37 @@ class DeliveryController extends Controller
         ]);
     }
 
+    // public function actionReturKiriman($id)
+    // {
+    //     $model = $this->findModel($id);
+    //     $model->is_retur = true;
+    //     if ($model->save()) {
+    //         Yii::$app->session->setFlash('info', "Barang berhasil di Retur.");
+
+    //         return $this->redirect(['view', 'id' => $model->id]);
+    //     }
+    // }
+
     public function actionReturKiriman($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = 'retur';
         $model->is_retur = true;
-        if ($model->save()) {
-            Yii::$app->session->setFlash('info', "Barang berhasil di Retur.");
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('info', "Barang berhasil di Retur.");
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        return $this->render('retur', [
+            'model' => $model,
+        ]);
     }
 
     public function actionFinish($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = 'finish';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

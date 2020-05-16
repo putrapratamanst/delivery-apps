@@ -78,6 +78,7 @@ class SiteController extends Controller
         }
 
         $dataKiriman = Delivery::find()->count();
+        $kirimanAll = Delivery::find()->asArray()->orderBy(['id' => SORT_DESC])->limit(5)->all();
         $dataTerbuka = Delivery::find()->where(['pengantar' => NULL])->andWhere(['tanggal_setor' => NULL])->andWhere(['is_retur' => NULL])->count();
         $dataSedangDikirim = Delivery::find()->where(['not', ['pengantar' => NULL]])->andWhere(['tanggal_setor' => NULL])->count();
         $dataSelesai = Delivery::find()->where(['not', ['pengantar' => NULL]])->andWhere(['not', ['tanggal_setor' => NULL]])->count();
@@ -88,11 +89,13 @@ class SiteController extends Controller
             'totalSedangDikirim' => $dataSedangDikirim,
             'totalSelesai' => $dataSelesai,
             'totalRetur' => $dataRetur,
+            'kirimanAll' => $kirimanAll,
         ]);
     }
 
     public function actionChart()
     {
+        $result= [];
         $dataKiriman = Delivery::find()->count();
         $dataTerbuka = Delivery::find()->where(['pengantar' => NULL])->andWhere(['tanggal_setor' => NULL])->andWhere(['is_retur' => NULL])->count();
         $dataSedangDikirim = Delivery::find()->where(['not', ['pengantar' => NULL]])->andWhere(['tanggal_setor' => NULL])->count();
@@ -106,6 +109,8 @@ class SiteController extends Controller
             'totalSelesai' => $dataSelesai,
             'totalRetur' => $dataRetur,
         ];
+        // $callback = json_decode(json_encode($result));
+
         return Json::encode($result);
     }
     /**

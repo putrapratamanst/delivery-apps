@@ -23,7 +23,9 @@ class m200508_174136_insert_delivery_table extends Migration
                 'tanggal_setor' => '02/03/2020',
                 'jasa_pengiriman' => 'Paketpos Cepat Internasional',
                 'pp25' => 10000,
+                'is_retur' => NULL,
                 'pp15' => 10000,
+                'bukti_pembayaran' => '1KSLSDJ323'
             ]
         );
         $this->insert(
@@ -38,6 +40,9 @@ class m200508_174136_insert_delivery_table extends Migration
                 'jasa_pengiriman' => 'EMS',
                 'pp25' => 10000,
                 'pp15' => 10000,
+                'is_retur' => NULL,
+                'alasan_retur'=>NULL
+
             ]
         );
         $this->insert(
@@ -52,6 +57,8 @@ class m200508_174136_insert_delivery_table extends Migration
                 'jasa_pengiriman' => 'Pos Ekspor',
                 'pp25' => 10000,
                 'pp15' => 10000,
+                'alasan_retur' => NULL
+
             ]
         );
         $this->insert(
@@ -60,13 +67,15 @@ class m200508_174136_insert_delivery_table extends Migration
                 'nama' => 'MIRANDA SETYA.',
                 'nomor_barcode' => 'LX392688533CN',
                 'alamat' => 'JL MEDAN MERDEKA 5 JEPANG',
-                'pengantar' => NULL,
+                'pengantar' => "RAHMAT",
                 'tanggal_terima' => '02/04/2019',
                 'tanggal_setor' => NULL,
                 'jasa_pengiriman' => 'ePacket',
                 'is_retur' => true,
                 'pp25' => 10000,
                 'pp15' => 10000,
+                'alasan_retur' => "BARANG TELAT SAMPAI"
+
             ]
         );
 
@@ -83,6 +92,8 @@ class m200508_174136_insert_delivery_table extends Migration
                 'is_retur' => NULL,
                 'pp25' => 10000,
                 'pp15' => 10000,
+                'alasan_retur'=>NULL
+
             ]
         );
 
@@ -99,6 +110,8 @@ class m200508_174136_insert_delivery_table extends Migration
                 'is_retur' => NULL,
                 'pp25' => 10000,
                 'pp15' => 10000,
+                'alasan_retur'=>NULL
+
             ]
         );
 
@@ -115,6 +128,8 @@ class m200508_174136_insert_delivery_table extends Migration
                 'is_retur' => NULL,
                 'pp25' => 10000,
                 'pp15' => 10000,
+                'alasan_retur'=>NULL
+
             ]
         );
 
@@ -131,6 +146,8 @@ class m200508_174136_insert_delivery_table extends Migration
                 'is_retur' => NULL,
                 'pp25' => 10000,
                 'pp15' => 10000,
+                'alasan_retur'=>NULL
+
             ]
         );
 

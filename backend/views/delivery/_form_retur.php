@@ -11,8 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="delivery-form">
 
     <?php $form = ActiveForm::begin(['options' => ['autocomplete' => 'off']]); ?>
-    <?= $form->field($model, 'tanggal_setor')->textInput(['maxlength' => true, 'class' => 'form-control has-feedback-left', 'id' => 'single_cal1']) ?>
-    <?= $form->field($model, 'bukti_pembayaran')->textInput(['maxlength' => true, 'class' => 'form-control has-feedback-left', 'id' => 'single_cal1']) ?>
+    <?= $form->field($model, 'alasan_retur')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::a('Back', ['index'], ['class' => 'btn btn-warning']) ?>
