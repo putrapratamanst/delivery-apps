@@ -22,6 +22,7 @@ class m200506_172611_create_delivery_table extends Migration
             'tanggal_setor' => $this->string(255),
             'jasa_pengiriman' => $this->string(255),
             'bukti_pembayaran' => $this->string(255),
+            'no_telephone' => $this->string(255),
             'alasan_retur' => $this->string(255),
             'is_retur' => $this->integer(10),
             'pp25' => $this->string(255),

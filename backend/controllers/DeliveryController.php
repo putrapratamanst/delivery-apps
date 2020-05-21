@@ -153,7 +153,7 @@ class DeliveryController extends Controller
                 $model->pengantar = NULL;
             }
             $model->save();
-            Yii::$app->session->setFlash('error', "User not saved.");
+            Yii::$app->session->setFlash('info', "Kiriman Tersimpan.");
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -393,7 +393,7 @@ class DeliveryController extends Controller
         $template = file_get_contents(Yii::getAlias('@app/web/template/sp.html'));
         $mpdf = new Mpdf([
             'mode'          => 'utf-8',
-            'format'        => [200, 256],
+            'format'        => [336, 336],
             'margin_left'   => 8,
             'margin_top'    => 5,
             'margin_right'  => 8,
@@ -416,7 +416,7 @@ class DeliveryController extends Controller
         <table>
             <tr>
                 <td id="tanggal_sekarang_slash" class="f--7">
-                    02/02/2020
+                    '.date('d/m/Y').'
                 </td>
                 <td class="f--7 center">
                     <span id="tanggal">Aplikasi Kiriman Internasional</span>
@@ -442,7 +442,37 @@ class DeliveryController extends Controller
 
 
     public function putDataToTemplate(DOMDocument $document, $data)
-    {
+    {        
+        $dataReport = $document->getElementById('tanggal_sekarang_dash');
+        $dataReport->nodeValue = date('d-m-Y');
+
+        $dataReport = $document->getElementById('nama');
+        $dataReport->nodeValue = $data['nama'];
+
+        $dataReport = $document->getElementById('nama1');
+        $dataReport->nodeValue = $data['nama'];
+
+        $dataReport = $document->getElementById('alamat');
+        $dataReport->nodeValue = $data['alamat'];
+
+        $dataReport = $document->getElementById('alamat1');
+        $dataReport->nodeValue = $data['alamat'];
+
+        $dataReport = $document->getElementById('no_telephone');
+        $dataReport->nodeValue = $data['no_telephone'];
+
+        $dataReport = $document->getElementById('no_telephone1');
+        $dataReport->nodeValue = $data['no_telephone'];
+
+        $dataReport = $document->getElementById('nomor_barcode');
+        $dataReport->nodeValue = $data['nomor_barcode'];
+
+        $dataReport = $document->getElementById('nomor_barcode1');
+        $dataReport->nodeValue = $data['nomor_barcode'];
+
+        $dataReport = $document->getElementById('2month');
+        $dataReport->nodeValue = date('d/m/Y', strtotime('+2 months'));
+
         return $document->saveHTML();
 
     }

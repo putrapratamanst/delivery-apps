@@ -17,6 +17,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'nomor_barcode')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'alamat')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'no_telephone')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'pengantar')->textInput(['maxlength' => true]) ?>
 

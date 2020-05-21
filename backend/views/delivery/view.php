@@ -45,6 +45,7 @@ if($user->role == 3)
             'alamat:ntext',
             'pengantar',
             'tanggal_terima',
+            'no_telephone',
             'tanggal_setor',
             [
                 'attribute' => 'pp25',

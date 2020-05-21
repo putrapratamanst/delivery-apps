@@ -37,7 +37,7 @@ class Delivery extends \yii\db\ActiveRecord
             [['bukti_pembayaran'], 'required', 'on' =>'finish'],
             [['alasan_retur'], 'required', 'on' =>'retur'],
             [['alamat'], 'string'],
-            [['bukti_pembayaran','alasan_retur','nama', 'tanggal_setor', 'nomor_barcode', 'pengantar', 'tanggal_terima', 'pp25', 'pp15', 'jasa_pengiriman'], 'string', 'max' => 255],
+            [['no_telephone', 'bukti_pembayaran','alasan_retur','nama', 'tanggal_setor', 'nomor_barcode', 'pengantar', 'tanggal_terima', 'pp25', 'pp15', 'jasa_pengiriman'], 'string', 'max' => 255],
         ];
     }
 

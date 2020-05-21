@@ -18,7 +18,7 @@ class DeliverySearch extends Delivery
     {
         return [
             [['id', 'is_retur'], 'integer'],
-            [['nama', 'nomor_barcode', 'alamat', 'pengantar', 'tanggal_terima', 'pp25', 'pp15', 'tanggal_setor'], 'safe'],
+            [['nama', 'nomor_barcode', 'alamat', 'pengantar', 'tanggal_terima', 'pp25', 'pp15', 'tanggal_setor', 'no_telephone'], 'safe'],
         ];
     }
 
