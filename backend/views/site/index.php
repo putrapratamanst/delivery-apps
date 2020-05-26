@@ -8,20 +8,32 @@
             <div class="count"><?= $totalKiriman; ?></div>
         </div>
         <div class="col-md-3 col-sm-4  tile_stats_count">
-            <span class="count_top"><i class="fa fa-clock-o"></i> Kiriman Terbuka</span>
-            <div class="count red"><?= $totalTerbuka ?></div>
+            <span class="count_top"><i class="fa fa-clock-o"></i> Data Kiriman</span>
+            <a href="/delivery/terbuka">
+                <div class="count red">
+                    <?= $totalTerbuka ?>
+                </div>
+            </a>
         </div>
         <div class="col-md-3 col-sm-4  tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Sedang Dikirim</span>
-            <div class="count green"><?= $totalSedangDikirim ?></div>
+            <a href="/delivery/dikirim">
+                <div class="count green">
+                    <?= $totalSedangDikirim ?>
+                </div>
+            </a>
         </div>
         <div class="col-md-3 col-sm-4  tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Kiriman Selesai</span>
-            <div class="count blue"><?= $totalSelesai ?></div>
+            <a href="/delivery/lunas">
+                <div class="count blue"><?= $totalSelesai ?></div>
+            </a>
         </div>
         <div class="col-md-3 col-sm-4  tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Total Retur</span>
-            <div class="count yellow"><?= $totalRetur ?></div>
+            <a href="/delivery/retur">
+                <div class="count yellow"><?= $totalRetur ?></div>
+            </a>
         </div>
     </div>
 </div>
@@ -79,23 +91,24 @@
 
                     <ul class="list-unstyled timeline widget">
                         <?php
-                        if($kirimanAll > 0){
-                        foreach ($kirimanAll as $key => $value) { ?>
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Pengirim: <?= $value['nama'] ?></a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>Nomor Barcode</span> <a><?= $value['nomor_barcode'] ?></a>
+                        if ($kirimanAll > 0) {
+                            foreach ($kirimanAll as $key => $value) { ?>
+                                <li>
+                                    <div class="block">
+                                        <div class="block_content">
+                                            <h2 class="title">
+                                                <a>Pengirim: <?= $value['nama'] ?></a>
+                                            </h2>
+                                            <div class="byline">
+                                                <span>Nomor Barcode</span> <a><?= $value['nomor_barcode'] ?></a>
+                                            </div>
+                                            <p class="excerpt">Alamat: <?= $value['alamat'] ?></a>
+                                            </p>
                                         </div>
-                                        <p class="excerpt">Alamat: <?= $value['alamat']?></a>
-                                        </p>
                                     </div>
-                                </div>
-                            </li>
-                        <?php }} ?>
+                                </li>
+                        <?php }
+                        } ?>
                     </ul>
                 </div>
             </div>
